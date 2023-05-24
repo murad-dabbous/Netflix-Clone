@@ -4,14 +4,14 @@ import axios from "axios";
 import { Row } from "react-bootstrap";
 const Home = () => {
   const [printingData, setPrinitngData] = useState([]);
-  const [singleMovie, setSingleMovie] = useState({});
+  // const [singleMovie, setSingleMovie] = useState({});
   useEffect(() => {
     fetchTrendingHandler();
   }, []);
   const fetchTrendingHandler = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_LOCAL_SERVER}trending?api_key=${process.env.API_KEY}`
+        `${process.env.REACT_APP_LOCAL_SERVER}/trending`
       );
       console.log(res.data.message);
       setPrinitngData(res.data.message);
@@ -24,14 +24,15 @@ const Home = () => {
     <Fragment>
       {/* <Button onClick={fetchTrendingHandler}>Fetch Data</Button> */}
       <Row>
-        {printingData.length &&
+        {/* {printingData.length &&
           printingData.map((dataItem) => (
             <MovieList
               key={dataItem.id}
               data={dataItem}
               setSingleMovie={setSingleMovie}
             />
-          ))}
+          ))} */}
+        <MovieList data={printingData} />
       </Row>
     </Fragment>
   );

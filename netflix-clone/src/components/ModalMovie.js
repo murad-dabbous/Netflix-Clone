@@ -19,13 +19,12 @@ const ModalMovie = ({ show, data, handleClose }) => {
       comments: comm,
     };
     axios
-      .post(`${process.env.REACT_APP_LOCAL_SERVER}addMovie`, obj)
+      .post(`${process.env.REACT_APP_LOCAL_SERVER}/addMovie`, obj)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
 
   const handleClick = () => {
-    submitHandler();
     handleClose();
   };
   return (
@@ -36,7 +35,7 @@ const ModalMovie = ({ show, data, handleClose }) => {
       <Modal.Body>
         {/* Woohoo, you are reading this text in a modal! */}
         <img src={img} alt={data.title} />
-        <form onSubmit={submitHandler}>
+        <form onSubmit={(e) => submitHandler(e)}>
           <div className="comment-div">
             <label htmlFor="comment" className="space">
               {" "}
