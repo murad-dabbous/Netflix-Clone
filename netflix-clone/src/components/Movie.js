@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ModalMovie from "./ModalMovie";
 import { useState } from "react";
-const Movie = ({ data }) => {
+const Movie = ({ data, onFav = false }) => {
   const [singleMovie, setSingleMovie] = useState({});
   const [show, setShow] = useState(false);
 
@@ -27,9 +27,16 @@ const Movie = ({ data }) => {
           <Card.Title> {data.title}</Card.Title>
           <Card.Text>{data.overview}</Card.Text>
 
-          <Button className="btn-style" type="submit" onClick={handleClick}>
-            Add to favourite
-          </Button>
+          {!onFav ? (
+            <>
+              <Button variant="success">Update</Button>
+              <Button variant="danger">Delete</Button>
+            </>
+          ) : (
+            <Button variant="primary" onClick={handleClick}>
+              Add to Favorite
+            </Button>
+          )}
         </Card.Body>
       </Card>
       <ModalMovie data={data} show={show} handleClose={handleClose} />

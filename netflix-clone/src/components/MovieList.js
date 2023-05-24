@@ -5,6 +5,11 @@ const MovieList = ({ data, setSingleMovie }) =>
 
   data.length &&
   data.map((dataItem) => (
-    <Movie key={dataItem.id} data={dataItem} setSingleMovie={setSingleMovie} />
+    <Movie
+      key={dataItem.id}
+      data={dataItem}
+      setSingleMovie={setSingleMovie}
+      onFav={true}
+    />
   ));
 export default MovieList;
